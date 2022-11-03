@@ -1,4 +1,4 @@
-package com.sparta.boredAPI.dtl;
+package com.sparta.boredAPI.dto;
 
 import com.fasterxml.jackson.annotation.JsonProperty;
 
