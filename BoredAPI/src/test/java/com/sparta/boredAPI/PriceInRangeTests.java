@@ -1,8 +1,8 @@
 package com.sparta.boredAPI;
 
-import org.json.simple.JSONObject;
-import org.json.simple.parser.JSONParser;
-import org.json.simple.parser.ParseException;
+import com.fasterxml.jackson.core.JsonProcessingException;
+import com.fasterxml.jackson.databind.ObjectMapper;
+import com.sparta.boredAPI.dto.Response;
 import org.junit.jupiter.api.Assertions;
 import org.junit.jupiter.api.BeforeAll;
 import org.junit.jupiter.api.DisplayName;
@@ -14,15 +14,15 @@ import java.net.http.HttpClient;
 import java.net.http.HttpRequest;
 import java.net.http.HttpResponse;
 
-public class MisspelledEndpointTests {
+public class PriceInRangeTests {
     private static HttpResponse<String> httpResponse = null;
-    private static JSONObject jsonObject = null;
+    private static Response response = null;
 
     @BeforeAll
     public static void oneTimeSetUp() {
         HttpClient httpClient = HttpClient.newBuilder().build();
         HttpRequest httpRequest = HttpRequest.newBuilder()
-                .uri(URI.create("https://www.boredapi.com/api/actiity"))
+                .uri(URI.create("https://www.boredapi.com/api/activity?minprice=0.1&maxprice=0.5"))
                 .setHeader("Content-type", "application/json")
                 .build();
 
@@ -32,10 +32,10 @@ public class MisspelledEndpointTests {
             e.printStackTrace();
         }
 
-        JSONParser jsonParser = new JSONParser();
         try {
-            jsonObject = (JSONObject) jsonParser.parse(httpResponse.body());
-        } catch (ParseException e) {
+            ObjectMapper objectMapper = new ObjectMapper();
+            response = objectMapper.readValue(httpResponse.body(), Response.class);
+        } catch (JsonProcessingException e) {
             e.printStackTrace();
         }
     }
@@ -43,13 +43,13 @@ public class MisspelledEndpointTests {
     @Test
     @DisplayName("URI Path")
     public void testUriPath() {
-        Assertions.assertEquals("/api/actiity", httpResponse.uri().getPath());
+        Assertions.assertEquals("/api/activity", httpResponse.uri().getPath());
     }
 
     @Test
     @DisplayName("Full URI")
     public void testFullUri() {
-        Assertions.assertEquals("https://www.boredapi.com/api/actiity", httpResponse.uri().toString());
+        Assertions.assertEquals("https://www.boredapi.com/api/activity?minprice=0.1&maxprice=0.5", httpResponse.uri().toString());
     }
 
     @Test
@@ -61,6 +61,6 @@ public class MisspelledEndpointTests {
     @Test
     @DisplayName("Error message")
     public void testResult() {
-        Assertions.assertEquals("Endpoint not found", jsonObject.get("error"));
+        Assertions.assertTrue(response.getPrice() >= 0.1 && response.getPrice() <= 0.5);
     }
 }

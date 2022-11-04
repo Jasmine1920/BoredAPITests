@@ -3,7 +3,6 @@ package com.sparta.boredAPI;
 import com.fasterxml.jackson.core.JsonProcessingException;
 import com.fasterxml.jackson.databind.ObjectMapper;
 import com.sparta.boredAPI.dto.Response;
-import org.json.simple.parser.JSONParser;
 import org.junit.jupiter.api.Assertions;
 import org.junit.jupiter.api.BeforeAll;
 import org.junit.jupiter.api.DisplayName;
@@ -36,8 +35,7 @@ public class RandomActivityTests {
         try {
             ObjectMapper objectMapper = new ObjectMapper();
             response = objectMapper.readValue(httpResponse.body(), Response.class);
-        }
-        catch (JsonProcessingException e) {
+        } catch (JsonProcessingException e) {
             e.printStackTrace();
         }
     }
