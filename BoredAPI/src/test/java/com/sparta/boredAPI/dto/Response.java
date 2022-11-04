@@ -8,10 +8,10 @@ public class Response{
 	private String activity;
 
 	@JsonProperty("accessibility")
-	private Integer accessibility;
+	private Double accessibility;
 
 	@JsonProperty("price")
-	private Integer price;
+	private Double price;
 
 	@JsonProperty("link")
 	private String link;
@@ -29,11 +29,11 @@ public class Response{
 		return activity;
 	}
 
-	public Integer getAccessibility(){
+	public Double getAccessibility(){
 		return accessibility;
 	}
 
-	public Integer getPrice(){
+	public Double getPrice(){
 		return price;
 	}
 
