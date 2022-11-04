@@ -2,7 +2,7 @@ package com.sparta.boredAPI;
 
 import com.fasterxml.jackson.core.JsonProcessingException;
 import com.fasterxml.jackson.databind.ObjectMapper;
-import com.sparta.boredAPI.DTO.Response;
+import com.sparta.boredAPI.dto.Response;
 import org.junit.jupiter.api.Assertions;
 import org.junit.jupiter.api.BeforeAll;
 import org.junit.jupiter.api.DisplayName;
