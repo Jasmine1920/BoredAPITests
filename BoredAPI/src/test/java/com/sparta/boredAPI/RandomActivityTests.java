@@ -36,8 +36,7 @@ public class RandomActivityTests {
         try {
             ObjectMapper objectMapper = new ObjectMapper();
             response = objectMapper.readValue(httpResponse.body(), Response.class);
-        }
-        catch (JsonProcessingException e) {
+        } catch (JsonProcessingException e) {
             e.printStackTrace();
         }
     }
