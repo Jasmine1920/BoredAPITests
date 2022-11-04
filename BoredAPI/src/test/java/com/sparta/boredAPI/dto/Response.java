@@ -52,4 +52,15 @@ public class Response{
 	public Integer getParticipants(){
 		return participants;
 	}
+
+	//helper methods
+	public boolean isNotEmpty() {
+		return activity != null && !activity.isEmpty()
+				&& type != null && !type.isEmpty()
+				&& link != null && !link.isEmpty()
+				&& key != null && !key.isEmpty()
+				&& accessibility != null
+				&& price != null
+				&& participants != null;
+	}
 }
