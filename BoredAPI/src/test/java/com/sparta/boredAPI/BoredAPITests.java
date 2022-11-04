@@ -14,7 +14,6 @@ import java.net.http.HttpClient;
 import java.net.http.HttpRequest;
 import java.net.http.HttpResponse;
 
-
 public class BoredAPITests {
     private static HttpResponse<String> httpResponse = null;
     private static Response response=null;
@@ -45,7 +44,4 @@ public class BoredAPITests {
     public void recreationalactivitytest(){
         Assertions.assertEquals("recreational",response.getType());
     }
-
-
- main
 }
