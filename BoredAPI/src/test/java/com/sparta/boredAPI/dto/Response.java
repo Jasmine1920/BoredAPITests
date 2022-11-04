@@ -34,13 +34,6 @@ public class Response{
 		return price;
 	}
 
-	public Integer getAccessibility(){
-		return accessibility;
-	}
-
-	public Integer getPrice(){
-		return price;
-	}
 
 	public String getLink(){
 		return link;
