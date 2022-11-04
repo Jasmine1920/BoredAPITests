@@ -45,4 +45,7 @@ public class BoredAPITests {
     public void recreationalactivitytest(){
         Assertions.assertEquals("recreational",response.getType());
     }
+
+
+ main
 }
