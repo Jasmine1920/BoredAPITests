@@ -8,10 +8,20 @@ public class Response{
 	private String activity;
 
 	@JsonProperty("accessibility")
+<<<<<<< HEAD
 	private Double accessibility;
 
 	@JsonProperty("price")
 	private Double price;
+=======
+	private Integer accessibility;
+
+	@JsonProperty("price")
+	private Integer price;
+
+	@JsonProperty("link")
+	private String link;
+>>>>>>> 8ed077e4892dbf92e6d95cdbba8db1d75c4de34b
 
 	@JsonProperty("type")
 	private String type;
@@ -22,13 +32,17 @@ public class Response{
 	@JsonProperty("participants")
 	private Integer participants;
 
+<<<<<<< HEAD
 	@JsonProperty("link")
 	private String link;
 
+=======
+>>>>>>> 8ed077e4892dbf92e6d95cdbba8db1d75c4de34b
 	public String getActivity(){
 		return activity;
 	}
 
+<<<<<<< HEAD
 	public Double getAccessibility(){
 		return accessibility;
 	}
@@ -37,6 +51,20 @@ public class Response{
 		return price;
 	}
 
+=======
+	public Integer getAccessibility(){
+		return accessibility;
+	}
+
+	public Integer getPrice(){
+		return price;
+	}
+
+	public String getLink(){
+		return link;
+	}
+
+>>>>>>> 8ed077e4892dbf92e6d95cdbba8db1d75c4de34b
 	public String getType(){
 		return type;
 	}
@@ -48,4 +76,18 @@ public class Response{
 	public Integer getParticipants(){
 		return participants;
 	}
+<<<<<<< HEAD
+=======
+
+	//helper methods
+	public boolean isNotEmpty() {
+		return activity != null && !activity.isEmpty()
+				&& type != null && !type.isEmpty()
+				&& link != null && !link.isEmpty()
+				&& key != null && !key.isEmpty()
+				&& accessibility != null
+				&& price != null
+				&& participants != null;
+	}
+>>>>>>> 8ed077e4892dbf92e6d95cdbba8db1d75c4de34b
 }
