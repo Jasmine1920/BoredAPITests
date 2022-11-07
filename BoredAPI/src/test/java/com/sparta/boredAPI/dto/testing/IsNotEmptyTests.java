@@ -48,4 +48,5 @@ public class IsNotEmptyTests {
         Response response = new Response("Google something", 0.5, 0.0, "https://google.com", "recreational", null, 1);
         Assertions.assertFalse(response.isNotEmpty());
     }
+
 }
