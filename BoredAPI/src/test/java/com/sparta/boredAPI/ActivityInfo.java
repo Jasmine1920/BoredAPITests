@@ -22,16 +22,10 @@ import java.net.http.HttpRequest;
 import java.net.http.HttpResponse;
 
 
-
-
 public class ActivityInfo{
-
-
     private static HttpResponse<String> httpResponse = null;
     private static JSONObject jsonObject = null;
     private static Response response = null;
-
-
 
     @BeforeAll
     public static void oneTimeSetUp() {
