@@ -53,19 +53,13 @@ public class Response{
 		return participants;
 	}
 
-	/*public boolean isNotEmpty() {
-		return activity != null && !activity.isEmpty()
-				&& type != null && !type.isEmpty()
-				&& link != null && !link.isEmpty()
-				&& key != null && !key.isEmpty()
-				&& accessibility != null
-				&& price != null
-				&& participants != null;
-
-
-	}*/
-
 	public Boolean activityisrecreationalandnotnull(){
-		return type!=null && getType().equals("recreational");
+		return type!=null && getType().equals("recreational");}
+
+	public boolean isNotEmpty() {
+		return activity != null && !activity.isEmpty()
+				&& link != null && !link.isEmpty()
+				&& type != null && !type.isEmpty()
+				&& key != null && !key.isEmpty();
 	}
 }

@@ -14,7 +14,7 @@ import java.net.http.HttpClient;
 import java.net.http.HttpRequest;
 import java.net.http.HttpResponse;
 
-public class RandomActivityTests {
+public class Price {
     private static HttpResponse<String> httpResponse = null;
     private static Response response = null;
 
@@ -22,8 +22,7 @@ public class RandomActivityTests {
     public static void oneTimeSetUp() {
         HttpClient httpClient = HttpClient.newBuilder().build();
         HttpRequest httpRequest = HttpRequest.newBuilder()
-                .uri(URI.create("https://www.boredapi.com/api/activity/"))
-                .setHeader("Content-type", "application/json")
+                .uri(URI.create(" http://www.boredapi.com/api/activity?price=0.0"))
                 .build();
 
         try {
@@ -41,30 +40,27 @@ public class RandomActivityTests {
     }
 
     @Test
-    @DisplayName("URI Path")
-    public void testUriPath() {
-        Assertions.assertEquals("/api/activity/", httpResponse.uri().getPath());
+    @DisplayName("Activity is to volunteer at senior centre")
+    public void checkActivityTest() {
+        Assertions.assertEquals("Volunteer and help out at a senior center", response.getActivity());
     }
 
     @Test
-    @DisplayName("Full URI")
-    public void testFullUri() {
-        Assertions.assertEquals("https://www.boredapi.com/api/activity/", httpResponse.uri().toString());
+    @DisplayName("Type is charity")
+    public void checkTypeIsCharity(){
+        Assertions.assertEquals( "charity",response.getType());
     }
 
     @Test
-    @DisplayName("Status code is 200")
-    public void testStatusCode() {
-        Assertions.assertEquals(200, httpResponse.statusCode());
+    @DisplayName("Number of participants is 1")
+    public void checkParticipantsIs1Test(){
+        Assertions.assertEquals( 1,response.getParticipants());
     }
 
 
-    /*@Test
-    @DisplayName("Response object is not empty")
-    public void testResponseObjNotEmpty() {
-        Assertions.assertTrue(response.isNotEmpty());
-    }*/
-
-
-
+    @Test
+    @DisplayName("Check of price is 0")
+    public void checkPriceTeast(){
+        Assertions.assertEquals(0,response.getPrice());
+    }
 }
