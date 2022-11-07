@@ -1,4 +1,4 @@
-package com.sparta.boredAPI;
+package com.sparta.boredAPI.dto.testing;
 
 import com.fasterxml.jackson.core.JsonProcessingException;
 import com.fasterxml.jackson.databind.ObjectMapper;
@@ -14,16 +14,14 @@ import java.net.http.HttpClient;
 import java.net.http.HttpRequest;
 import java.net.http.HttpResponse;
 
-public class RandomActivityTests {
+public class PartcipantsTest {
     private static HttpResponse<String> httpResponse = null;
-    private static Response response = null;
-
+    private static Response response=null;
     @BeforeAll
     public static void oneTimeSetUp() {
         HttpClient httpClient = HttpClient.newBuilder().build();
         HttpRequest httpRequest = HttpRequest.newBuilder()
-                .uri(URI.create("https://www.boredapi.com/api/activity/"))
-                .setHeader("Content-type", "application/json")
+                .uri(URI.create("http://www.boredapi.com/api/activity?participants=1"))
                 .build();
 
         try {
@@ -33,29 +31,17 @@ public class RandomActivityTests {
         }
 
         try {
-            ObjectMapper objectMapper = new ObjectMapper();
-            response = objectMapper.readValue(httpResponse.body(), Response.class);
-        } catch (JsonProcessingException e) {
+            ObjectMapper objectMapper=new ObjectMapper();
+            response=objectMapper.readValue(httpResponse.body(), Response.class);
+        }
+        catch (JsonProcessingException e) {
             e.printStackTrace();
         }
     }
 
     @Test
-    @DisplayName("URI Path")
-    public void testUriPath() {
-        Assertions.assertEquals("/api/activity/", httpResponse.uri().getPath());
+    @DisplayName("Testing getting a activity with 1 participant")
+    public void activityforone(){
+        Assertions.assertEquals(1,response.getParticipants());
     }
-
-    @Test
-    @DisplayName("Full URI")
-    public void testFullUri() {
-        Assertions.assertEquals("https://www.boredapi.com/api/activity/", httpResponse.uri().toString());
-    }
-
-    @Test
-    @DisplayName("Status code is 200")
-    public void testStatusCode() {
-        Assertions.assertEquals(200, httpResponse.statusCode());
-    }
-
 }
