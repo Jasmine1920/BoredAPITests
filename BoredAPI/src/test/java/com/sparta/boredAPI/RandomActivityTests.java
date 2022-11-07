@@ -3,6 +3,8 @@ package com.sparta.boredAPI;
 import com.fasterxml.jackson.core.JsonProcessingException;
 import com.fasterxml.jackson.databind.ObjectMapper;
 import com.sparta.boredAPI.dto.Response;
+import org.apache.logging.log4j.LogManager;
+import org.apache.logging.log4j.Logger;
 import org.junit.jupiter.api.Assertions;
 import org.junit.jupiter.api.BeforeAll;
 import org.junit.jupiter.api.DisplayName;
@@ -17,9 +19,10 @@ import java.net.http.HttpResponse;
 public class RandomActivityTests {
     private static HttpResponse<String> httpResponse = null;
     private static Response response = null;
+    private static Logger logger= LogManager.getLogger("logger");
 
     @BeforeAll
-    public static void oneTimeSetUp() {
+    public static void oneTimeSetUp() throws IOException, InterruptedException {
         HttpClient httpClient = HttpClient.newBuilder().build();
         HttpRequest httpRequest = HttpRequest.newBuilder()
                 .uri(URI.create("https://www.boredapi.com/api/activity/"))
@@ -27,16 +30,24 @@ public class RandomActivityTests {
                 .build();
 
         try {
+            logger.info("Creating an httpResponse object");
             httpResponse = httpClient.send(httpRequest, HttpResponse.BodyHandlers.ofString());
         } catch (IOException | InterruptedException e) {
-            e.printStackTrace();
+            logger.catching(e);
+            logger.error("Exception thrown");
+            logger.error(e.getMessage());
+            throw e;
         }
 
         try {
+            logger.info("Creating an Response object");
             ObjectMapper objectMapper = new ObjectMapper();
             response = objectMapper.readValue(httpResponse.body(), Response.class);
         } catch (JsonProcessingException e) {
-            e.printStackTrace();
+            logger.catching(e);
+            logger.error("Exception thrown");
+            logger.error(e.getMessage());
+            throw e;
         }
     }
 

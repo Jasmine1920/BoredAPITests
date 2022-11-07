@@ -1,5 +1,7 @@
 package com.sparta.boredAPI;
 
+import org.apache.logging.log4j.LogManager;
+import org.apache.logging.log4j.Logger;
 import org.json.simple.JSONObject;
 import org.json.simple.parser.JSONParser;
 import org.json.simple.parser.ParseException;
@@ -17,9 +19,10 @@ import java.net.http.HttpResponse;
 public class PriceOutOfRangeTests {
     private static HttpResponse<String> httpResponse = null;
     private static JSONObject jsonObject = null;
+    private static Logger logger= LogManager.getLogger("logger");
 
     @BeforeAll
-    public static void oneTimeSetUp() {
+    public static void oneTimeSetUp() throws IOException, InterruptedException, ParseException {
         HttpClient httpClient = HttpClient.newBuilder().build();
         HttpRequest httpRequest = HttpRequest.newBuilder()
                 .uri(URI.create("https://www.boredapi.com/api/activity?price=2"))
@@ -27,16 +30,24 @@ public class PriceOutOfRangeTests {
                 .build();
 
         try {
+            logger.info("Creating an httpResponse object");
             httpResponse = httpClient.send(httpRequest, HttpResponse.BodyHandlers.ofString());
         } catch (IOException | InterruptedException e) {
-            e.printStackTrace();
+            logger.catching(e);
+            logger.error("Exception thrown");
+            logger.error(e.getMessage());
+            throw e;
         }
 
         JSONParser jsonParser = new JSONParser();
         try {
+            logger.info("Creating an jsonObject object");
             jsonObject = (JSONObject) jsonParser.parse(httpResponse.body());
         } catch (ParseException e) {
-            e.printStackTrace();
+            logger.catching(e);
+            logger.error("Exception thrown");
+            logger.error(e.getMessage());
+            throw e;
         }
     }
 

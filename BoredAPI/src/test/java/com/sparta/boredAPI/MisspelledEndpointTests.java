@@ -14,12 +14,16 @@ import java.net.http.HttpClient;
 import java.net.http.HttpRequest;
 import java.net.http.HttpResponse;
 
+import org.apache.logging.log4j.LogManager;
+import org.apache.logging.log4j.Logger;
+
 public class MisspelledEndpointTests {
     private static HttpResponse<String> httpResponse = null;
     private static JSONObject jsonObject = null;
+    private static Logger logger= LogManager.getLogger("logger");
 
     @BeforeAll
-    public static void oneTimeSetUp() {
+    public static void oneTimeSetUp() throws IOException, InterruptedException, ParseException {
         HttpClient httpClient = HttpClient.newBuilder().build();
         HttpRequest httpRequest = HttpRequest.newBuilder()
                 .uri(URI.create("https://www.boredapi.com/api/actiity"))
@@ -27,16 +31,24 @@ public class MisspelledEndpointTests {
                 .build();
 
         try {
+            logger.info("Creating an httpResponse object");
             httpResponse = httpClient.send(httpRequest, HttpResponse.BodyHandlers.ofString());
         } catch (IOException | InterruptedException e) {
-            e.printStackTrace();
+            logger.catching(e);
+            logger.error("Exception thrown");
+            logger.error(e.getMessage());
+            throw e;
         }
 
         JSONParser jsonParser = new JSONParser();
         try {
+            logger.info("Creating a jsonObject object");
             jsonObject = (JSONObject) jsonParser.parse(httpResponse.body());
         } catch (ParseException e) {
-            e.printStackTrace();
+            logger.catching(e);
+            logger.error("Exception thrown");
+            logger.error(e.getMessage());
+            throw e;
         }
     }
 
