@@ -10,7 +10,7 @@
       </profile>
     </annotationProcessing>
     <bytecodeTargetLevel>
-      <module name="BoredAPI" target="19" />
+      <module name="BoredAPI" target="18" />
     </bytecodeTargetLevel>
   </component>
 </project>

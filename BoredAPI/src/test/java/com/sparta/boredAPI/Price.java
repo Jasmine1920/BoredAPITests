@@ -40,15 +40,20 @@ public class Price {
     }
 
     @Test
-    @DisplayName("Number of participants is 1")
-    public void checkParticipantsIs1Test(){
-        Assertions.assertEquals( 1,response.getParticipants());
-    }
-
-
-    @Test
     @DisplayName("Check of price is 0")
-    public void checkPriceTeast(){
-        Assertions.assertEquals(0,response.getPrice());
+    public void checkPriceTest() {
+        Assertions.assertEquals(0, response.getPrice());
+    }
+    @Test
+    @DisplayName("Status code is 200")
+    public void testStatusCode() {
+        Assertions.assertEquals(200, httpResponse.statusCode());
     }
 }
+
+//    @Test
+//    @DisplayName("Number of participants is 1")
+//    public void checkParticipantsIs1Test(){
+//        Assertions.assertEquals( 1,response.getParticipants());
+//    }
+

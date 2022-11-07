@@ -53,6 +53,9 @@ public class Response{
 		return participants;
 	}
 
+	public Boolean activityisrecreationalandnotnull(){
+		return type!=null && getType().equals("recreational");}
+
 	public boolean isNotEmpty() {
 		return activity != null && !activity.isEmpty()
 				&& link != null && !link.isEmpty()
