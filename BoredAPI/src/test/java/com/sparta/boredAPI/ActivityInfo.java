@@ -1,10 +1,11 @@
 package com.sparta.boredAPI;
 
 
-
 import com.fasterxml.jackson.core.JsonProcessingException;
 import com.fasterxml.jackson.databind.ObjectMapper;
 import com.sparta.boredAPI.dto.Response;
+import org.apache.logging.log4j.LogManager;
+import org.apache.logging.log4j.Logger;
 import org.json.simple.JSONObject;
 import org.json.simple.parser.JSONParser;
 import org.json.simple.parser.ParseException;
@@ -23,12 +24,14 @@ import java.net.http.HttpResponse;
 
 
 public class ActivityInfo{
+
+    private static Logger logger= LogManager.getLogger("boredapilogger");
     private static HttpResponse<String> httpResponse = null;
     private static JSONObject jsonObject = null;
     private static Response response = null;
 
     @BeforeAll
-    public static void oneTimeSetUp() {
+    public static void oneTimeSetUp() throws ParseException, JsonProcessingException {
         HttpClient httpClient = HttpClient.newBuilder().build();
         HttpRequest httpRequest = HttpRequest.newBuilder()
                 .uri(URI.create("http://www.boredapi.com/api/activity?key=5881028"))
@@ -53,9 +56,11 @@ public class ActivityInfo{
         }
         catch (ParseException | JsonProcessingException e) {
             e.printStackTrace();
+            logger.catching(e);
+            logger.warn("Exception thrown");
+            throw e;
         }
     }
-
 
 
     @Test
@@ -65,14 +70,11 @@ public class ActivityInfo{
     }
 
 
-
     @Test
     @DisplayName("Full URI")
     public void testFullURI() {
         Assertions.assertEquals("http://www.boredapi.com/api/activity?key=5881028" , httpResponse.uri().toString());
     }
-
-
 
 
     @Test
@@ -82,13 +84,11 @@ public class ActivityInfo{
     }
 
 
-
     @Test
     @DisplayName("Result = valid activity")
     public void testResult() {
         Assertions.assertEquals("Learn a new programming language", jsonObject.get("activity"));
     }
-
 
 
     @Test
