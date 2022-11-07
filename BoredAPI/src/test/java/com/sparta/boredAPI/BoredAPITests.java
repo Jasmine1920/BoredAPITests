@@ -44,4 +44,10 @@ public class BoredAPITests {
     public void recreationalactivitytest(){
         Assertions.assertEquals("recreational",response.getType());
     }
+
+    @Test
+    @DisplayName("Testing activity is recreational and not empty")
+    public void activitynotempty(){
+        Assertions.assertTrue(response.activityisrecreationalandnotnull());
+    }
 }

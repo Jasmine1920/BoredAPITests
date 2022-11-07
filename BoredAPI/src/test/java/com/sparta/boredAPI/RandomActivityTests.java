@@ -58,10 +58,13 @@ public class RandomActivityTests {
         Assertions.assertEquals(200, httpResponse.statusCode());
     }
 
-//    @Test
-//    @DisplayName("Response object is not empty")
-//    public void testResponseObjNotEmpty() {
-//        Assertions.assertTrue(response.isNotEmpty());
-//    }
+
+    /*@Test
+    @DisplayName("Response object is not empty")
+    public void testResponseObjNotEmpty() {
+        Assertions.assertTrue(response.isNotEmpty());
+    }*/
+
+
 
 }
