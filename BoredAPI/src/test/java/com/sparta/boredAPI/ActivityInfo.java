@@ -23,7 +23,6 @@ import java.net.http.HttpRequest;
 import java.net.http.HttpResponse;
 
 
-
 public class ActivityInfo{
 
     private static Logger logger= LogManager.getLogger("boredapilogger");
