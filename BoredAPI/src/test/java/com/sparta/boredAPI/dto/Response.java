@@ -4,6 +4,18 @@ import com.fasterxml.jackson.annotation.JsonProperty;
 
 public class Response{
 
+	public Response() {}
+
+	public Response(String activity, double accessibility, double price, String link, String type, String key, int participants) {
+		this.activity = activity;
+		this.accessibility = accessibility;
+		this.price = price;
+		this.link = link;
+		this.type = type;
+		this.key = key;
+		this.participants = participants;
+	}
+
 	@JsonProperty("activity")
 	private String activity;
 
