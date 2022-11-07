@@ -52,4 +52,20 @@ public class Response{
 	public int getParticipants(){
 		return participants;
 	}
+
+	/*public boolean isNotEmpty() {
+		return activity != null && !activity.isEmpty()
+				&& type != null && !type.isEmpty()
+				&& link != null && !link.isEmpty()
+				&& key != null && !key.isEmpty()
+				&& accessibility != null
+				&& price != null
+				&& participants != null;
+
+
+	}*/
+
+	public Boolean activityisrecreationalandnotnull(){
+		return type!=null && getType().equals("recreational");
+	}
 }
