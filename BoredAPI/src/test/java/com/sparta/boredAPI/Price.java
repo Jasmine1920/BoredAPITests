@@ -22,7 +22,7 @@ public class Price {
     public static void oneTimeSetUp() {
         HttpClient httpClient = HttpClient.newBuilder().build();
         HttpRequest httpRequest = HttpRequest.newBuilder()
-                .uri(URI.create(" http://www.boredapi.com/api/activity?price=0.0"))
+                .uri(URI.create("http://www.boredapi.com/api/activity?price=0.0"))
                 .build();
 
         try {
@@ -37,18 +37,6 @@ public class Price {
         } catch (JsonProcessingException e) {
             e.printStackTrace();
         }
-    }
-
-    @Test
-    @DisplayName("Activity is to volunteer at senior centre")
-    public void checkActivityTest() {
-        Assertions.assertEquals("Volunteer and help out at a senior center", response.getActivity());
-    }
-
-    @Test
-    @DisplayName("Type is charity")
-    public void checkTypeIsCharity(){
-        Assertions.assertEquals( "charity",response.getType());
     }
 
     @Test
