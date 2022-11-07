@@ -23,7 +23,7 @@ import java.net.http.HttpResponse;
 
 
 
-public class ValidKey {
+public class ActivityInfo{
 
 
 
