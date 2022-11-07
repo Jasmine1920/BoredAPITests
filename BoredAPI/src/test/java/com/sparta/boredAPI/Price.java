@@ -22,7 +22,7 @@ public class Price {
     public static void oneTimeSetUp() {
         HttpClient httpClient = HttpClient.newBuilder().build();
         HttpRequest httpRequest = HttpRequest.newBuilder()
-                .uri(URI.create(" http://www.boredapi.com/api/activity?price=0.0"))
+                .uri(URI.create("http://www.boredapi.com/api/activity?price=0.0"))
                 .build();
 
         try {
@@ -40,27 +40,20 @@ public class Price {
     }
 
     @Test
-    @DisplayName("Activity is to volunteer at senior centre")
-    public void checkActivityTest() {
-        Assertions.assertEquals("Volunteer and help out at a senior center", response.getActivity());
-    }
-
-    @Test
-    @DisplayName("Type is charity")
-    public void checkTypeIsCharity(){
-        Assertions.assertEquals( "charity",response.getType());
-    }
-
-    @Test
-    @DisplayName("Number of participants is 1")
-    public void checkParticipantsIs1Test(){
-        Assertions.assertEquals( 1,response.getParticipants());
-    }
-
-
-    @Test
     @DisplayName("Check of price is 0")
-    public void checkPriceTeast(){
-        Assertions.assertEquals(0,response.getPrice());
+    public void checkPriceTest() {
+        Assertions.assertEquals(0, response.getPrice());
+    }
+    @Test
+    @DisplayName("Status code is 200")
+    public void testStatusCode() {
+        Assertions.assertEquals(200, httpResponse.statusCode());
     }
 }
+
+//    @Test
+//    @DisplayName("Number of participants is 1")
+//    public void checkParticipantsIs1Test(){
+//        Assertions.assertEquals( 1,response.getParticipants());
+//    }
+
