@@ -23,8 +23,8 @@ import java.net.http.HttpResponse;
 
 
 
-public class ActivityInfo {
 
+public class ActivityInfo{
 
 
     private static HttpResponse<String> httpResponse = null;

@@ -13,8 +13,11 @@ import java.net.URI;
 import java.net.http.HttpClient;
 import java.net.http.HttpRequest;
 import java.net.http.HttpResponse;
+import org.apache.logging.log4j.LogManager;
+import org.apache.logging.log4j.Logger;
 
 public class BoredAPITests {
+    private static Logger logger= LogManager.getLogger("boredapilogger");
     private static HttpResponse<String> httpResponse = null;
     private static Response response=null;
     @BeforeAll
@@ -26,6 +29,7 @@ public class BoredAPITests {
 
         try {
             httpResponse = httpClient.send(httpRequest, HttpResponse.BodyHandlers.ofString());
+            logger.info("Test message");
         } catch (IOException | InterruptedException e) {
             e.printStackTrace();
         }
@@ -50,4 +54,5 @@ public class BoredAPITests {
     public void activitynotempty(){
         Assertions.assertTrue(response.activityisrecreationalandnotnull());
     }
+
 }
